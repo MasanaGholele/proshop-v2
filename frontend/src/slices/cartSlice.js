@@ -25,9 +25,16 @@ const cartSlice = createSlice({
 
       return updateCart(state);
     },
+    removeFromCart: (state, action) => {
+      const id = action.payload;
+
+      state.cartItems = state.cartItems.filter((x) => x._id !== action.payload);
+
+      return updateCart(state);
+    },
   },
 });
 
 
-export const { addToCart } = cartSlice.actions; // function that returns an action creator should be exported as such
+export const { addToCart, removeFromCart } = cartSlice.actions; // function that returns an action creator should be exported as such
 export default cartSlice.reducer;

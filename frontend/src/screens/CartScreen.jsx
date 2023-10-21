@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
 import Message from "../components/Message";
+import { addToCart, removeFromCart } from "../slices/cartSlice";
 
 const CartScreen = () => {
   const navigate = useNavigate();
@@ -19,6 +20,14 @@ const CartScreen = () => {
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+
+  const addToCartHandler = async (product, qty) => { 
+    dispatch(addToCart({...product, qty}))
+  };
+
+  const removeFromCartHandler = async (id) => { 
+    dispatch(removeFromCart(id));
+  };
 
   return (
     <Row>
@@ -44,7 +53,7 @@ const CartScreen = () => {
                     <Form.Control
                       as="select"
                       value={item.qty}
-                      onChange={(e) => {}}
+                      onChange={(e) => addToCartHandler(item, Number(e.target.value))}
                     >
                       {[...Array(item.countInStock).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
@@ -54,7 +63,8 @@ const CartScreen = () => {
                     </Form.Control>
                   </Col>
                   <Col md={2}>
-                    <Button type="button" variant="light" onClick={() => {}}>
+                    <Button type="button" variant="light" onClick={() => 
+                        removeFromCartHandler(item._id)}>
                       <FaTrash />
                     </Button>
                   </Col>
@@ -85,7 +95,7 @@ const CartScreen = () => {
                     Proceed To Checkout
                 </Button>
             </ListGroup.Item>
-            
+
           </ListGroup>
         </Card>
       </Col>
