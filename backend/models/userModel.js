@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';  // for hashing password
 
 const userSchema = mongoose.Schema(
   {
@@ -26,6 +27,9 @@ const userSchema = mongoose.Schema(
   }
 );
 
+userSchema.methods.matchPassword = async function (enteredPassword) {  // compare entered password with hashed password
+  return await bcrypt.compare(enteredPassword, this.password);  // this.password is the hashed password
+};
 
 const User = mongoose.model('User', userSchema);
 
