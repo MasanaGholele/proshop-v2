@@ -12,7 +12,7 @@ const protect = asyncHandler(async (req, res, next) => {
     if (token) {
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            req.user = await User.findbyId(decoded.userId).select('-password'); // will be in the request object in all the routes
+            req.user = await User.findById(decoded.userId).select('-password'); // will be in the request object in all the routes
         next();
         } catch (error) {
             console.log(error)
