@@ -87,7 +87,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
-    res.statu(200).json({
+    res.status(200).json({
       _id: user._id,
       name: user.name,
       email: user.email,
@@ -109,17 +109,17 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     user.email = req.body.email || user.email;
  
 
-      if (req.bosy.password) {
+      if (req.body.password) {
         user.password = req.body.password;
       }
 
       const updatedUser = await user.save();
 
       res.status(200).json({
-        _id: updateUser._id,
-        name: updateUser.name,
-        email: updateUser.email,
-        isAdmin: updateUser.isAdmin,
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
       });
 
     } else {
