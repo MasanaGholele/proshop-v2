@@ -16,7 +16,7 @@ const LoginScreen = () => {
     <FormContainer>
       <h1>Sign In</h1>
 
-      <Form on Submit={submitHandler}>
+      <Form onSubmit={submitHandler}>
         <Form.Group controlId="email" className="my-3">
           <Form.Label>Email Address</Form.Label>
           <Form.Control
@@ -37,7 +37,7 @@ const LoginScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="primary" className="my-3">
+        <Button type="submit" variant="primary" className="mt-2">
           Sign In
         </Button>
       </Form>
