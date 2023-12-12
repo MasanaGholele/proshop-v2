@@ -29,11 +29,21 @@ const cartSlice = createSlice({
       return updateCart(state);
     },
     saveShippingAddress: (state, action) => {
-      state.ShippingAddress = action.payload;
+      state.shippingAddress = action.payload;
       return updateCart(state);
-    }
+    },
+    savePaymentMethod: (state, action) => {
+      state.paymentMethod = action.payload;
+      return updateCart(state);
+    },
   },
 });
 
-export const { addToCart, removeFromCart, saveShippingAddress } = cartSlice.actions; // function that returns an action creator should be exported as such
+export const {
+  addToCart,
+  removeFromCart,
+  saveShippingAddress,
+  savePaymentMethod,
+} = cartSlice.actions; // function that returns an action creator should be exported as such
+
 export default cartSlice.reducer;

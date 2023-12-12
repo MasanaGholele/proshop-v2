@@ -21,7 +21,7 @@ import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ShippingScreen from "./screens/ShippingScreen";
-
+import PaymentScreen from "./screens/PaymentScreen";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,10 +32,10 @@ const router = createBrowserRouter(
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
 
-<Route path="" element={<PrivateRoute />}>
-<Route path="/shipping" element={<ShippingScreen />} />
-</Route>
-
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/shipping" element={<ShippingScreen />} />
+        <Route path="/payment" element={<PaymentScreen />} />
+      </Route>
     </Route>
   )
 );
@@ -44,7 +44,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 );
