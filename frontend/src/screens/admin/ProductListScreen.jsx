@@ -1,6 +1,6 @@
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Row, Col } from 'react-bootstrap';
-import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
+import { FaTimes, FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
@@ -23,7 +23,7 @@ const ProductListScreen = () => {
     useDeleteProductMutation();
 
   const deleteHandler = async (id) => {
-    if (window.confirm('Are you sure')) {
+    if (window.confirm('Are you sure you want to delete the product?')) {
       try {
         await deleteProduct(id);
         refetch();
@@ -39,7 +39,7 @@ const ProductListScreen = () => {
   const createProductHandler = async () => {
     if (window.confirm('Are you sure you want to create a new product?')) {
       try {
-        await createProduct();
+        await createProduct(); // no need to pass in anything, it gets it from the backend
         refetch();
       } catch (err) {
         toast.error(err?.data?.message || err.error);
@@ -60,7 +60,6 @@ const ProductListScreen = () => {
         </Col>
       </Row>
 
-      {loadingCreate && <Loader />}
       {loadingDelete && <Loader />}
       {isLoading ? (
         <Loader />
@@ -101,14 +100,14 @@ const ProductListScreen = () => {
                       <FaTrash style={{ color: 'white' }} />
                     </Button>
                   </td>
-                </tr>
+                </ tr>
               ))}
             </tbody>
           </Table>
           <Paginate pages={data.pages} page={data.page} isAdmin={true} />
         </>
-      )}
-    </>
+              )} 
+    </> 
   );
 };
 
